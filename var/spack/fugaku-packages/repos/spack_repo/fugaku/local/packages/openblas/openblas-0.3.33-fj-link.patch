@@ -1,0 +1,27 @@
+--- a/Makefile.system
++++ b/Makefile.system
+@@ -1245,8 +1245,12 @@
+ 
+ ifeq ($(F_COMPILER), FUJITSU)
+ CCOMMON_OPT += -DF_INTERFACE_FUJITSU
++# The Fujitsu drivers treat -L.../nofjobj as an internal option that
++# suppresses runtime startup objects. Do not reuse it from verbose probes.
++CEXTRALIB := $(filter-out -L%/nofjobj,$(CEXTRALIB))
++FEXTRALIB := $(filter-out -L%/nofjobj,$(FEXTRALIB))
+ ifeq ($(USE_OPENMP), 1)
+-FCOMMON_OPT += -openmp
++FCOMMON_OPT += -Kopenmp
+ endif
+ endif
+ 
+--- a/f_check
++++ b/f_check
+@@ -226,7 +226,7 @@
+             *frt*)
+                 vendor=FUJITSU
+                 bu=_
+-                openmp='-openmp'
++                openmp='-Kopenmp'
+                 ;;
+             *sunf77*|*sunf90*|*sunf95*)
+                 vendor=SUN

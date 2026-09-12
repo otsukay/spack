@@ -16,7 +16,7 @@ CLAUDE.md
 
 # Configuration: Ignore everything in /etc/spack,
 # except defaults and site scopes that ship with spack
-/etc/spack/*
+!/etc/spack/*
 !/etc/spack/defaults
 !/etc/spack/site/README.md
 

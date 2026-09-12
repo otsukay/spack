@@ -1,0 +1,4 @@
+repos:
+  fugaku.local: $spack/var/spack/fugaku-packages/repos/spack_repo/fugaku/local
+  builtin:
+    destination: $spack/var/spack/spack-packages
